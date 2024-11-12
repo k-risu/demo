@@ -1,0 +1,150 @@
+/* 상단영역 */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 68px;
+  border-bottom: 1px solid #ffffff;
+
+  z-index: 999;
+  padding-top: 15px;
+  background-color: #ffffff;
+}
+.header-active {
+  border-bottom: 1px solid #e6e5e6 !important;
+}
+.header .layout {
+  display: flex;
+
+  max-width: 1180px;
+  padding-left: 5px;
+  padding-right: 5px;
+
+  margin-left: auto;
+  margin-right: auto;
+  align-items: center;
+  justify-content: space-between;
+}
+.header-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.header-logo-link {
+  width: 88px;
+  height: 22px;
+}
+.header-logo-link img {
+  width: 100%;
+  height: 100%;
+}
+.header-logo-motion {
+  width: 68px;
+  height: 31px;
+}
+.header-logo-motion img {
+  width: 100%;
+  height: 100%;
+}
+.navigation {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.navigation a {
+  color: #1e1e1e;
+  font-weight: 700;
+  font-size: 16px;
+  text-decoration: none;
+}
+.navigation button {
+  width: 24px;
+  height: 24px;
+  border: none;
+  background-color: #fff;
+  cursor: pointer;
+}
+.navigation button img {
+  width: 100%;
+  height: 100%;
+}
+
+#mb-menu-bt {
+  display: none;
+}
+.bg-mb-menu {
+  position: fixed;
+  left: 0;
+  top: 0;
+
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+
+  opacity: 0;
+  visibility: hidden;
+
+  transition: all 0.5s;
+  transition-duration: 0.5s;
+  /* transition-property: all; */
+  /* display: none; */
+}
+
+.bg-mb-menu-active {
+  opacity: 1 !important;
+  visibility: visible !important;
+  /* display: block !important; */
+}
+
+.mb-menu {
+  position: fixed;
+  left: 0;
+  top: 68px;
+  /* display: none; */
+  visibility: hidden;
+  overflow: hidden;
+
+  width: 100%;
+  background-color: #ffffff;
+
+  height: 0px;
+  transition: all 0.5s;
+  transition-delay: 0.15s;
+}
+
+.mb-menu-active {
+  height: 150px !important;
+  visibility: visible !important;
+
+  /* display: block !important; */
+}
+
+.mb-menu .layout {
+  max-width: 1180px;
+  padding: 20px 40px;
+  margin: 0 auto;
+}
+
+.mb-menu .layout a {
+  display: block;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+/* 헤더 반응형  */
+@media screen and (max-width: 1024px) {
+  .navigation a {
+    display: none;
+  }
+  #mb-menu-bt {
+    display: block;
+  }
+  .bg-mb-menu {
+    /* display: block; */
+  }
+  .mb-menu {
+    /* display: block; */
+  }
+}

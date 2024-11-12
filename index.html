@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<!-- 웹브라우저가 위의 줄을 읽어들이면서 마음의 준비를 한다. -->
+<!-- !DOCTYPE html 을 읽어들이면 최신 HTML5 버전의 문서구나 -->
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      href="./images/icon/cropped-main-shape-32x32.png"
+      type="image/x-icon"
+    />
+    <!-- Swiper -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <title>카카오 브레인 블로그 클론 프로젝트</title>
+    <!-- <link rel="stylesheet" href="https://meyerweb.com/eric/tools/css/reset/reset.css" /> -->
+    <!-- <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css" /> -->
+    <!-- 아이콘 폰트 -->
+    <link
+      rel="stylesheet"
+      href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css"
+    />
+    <link rel="stylesheet" href="./css/common.css" />
+    <link rel="stylesheet" href="./css/header.css" />
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/main-slide.css" />
+    <link rel="stylesheet" href="./css/main-content.css" />
+    <link rel="stylesheet" href="./css/card-list.css" />
+    <link rel="stylesheet" href="./css/footer.css" />
+    <script src="./js/header.js"></script>
+    <script src="./js/main.js"></script>
+
+    <script src="./js/news.js"></script>
+    <script src="./js/card.js"></script>
+    <script src="./js/crew.js"></script>
+
+    <script src="./js/footer.js"></script>
+    <script src="./js/slide-main.js"></script>
+    <script src="./js/slide-logo.js"></script>
+    <script src="./js/slide-card.js"></script>
+  </head>
+  <body>
+    <!-- 먼저 레이아웃을 잡기위해 주석작성 및 div 를 사용한다. -->
+    <!-- div 는 레이아웃 용 이외에는 용도가 없다. -->
+    <!-- 반투명 배경 -->
+    <div class="bg-mb-menu"></div>
+    <!-- 상단 영역 -->
+    <header class="header">
+      <div class="layout">
+        <!-- 로고 -->
+        <div id="logo" class="header-logo">
+          <a href="/" class="header-logo-link">
+            <img src="./images/etc/logo-kakao.png" alt="카카오블로그" />
+          </a>
+
+          <div class="swiper header-logo-motion">
+            <div class="swiper-wrapper">
+              <!-- json 데이터를 출력한다 -->
+              <!-- <div class="swiper-slide">
+                <img src="./images/etc/logo-blog01.png" alt="" />
+              </div>
+              <div class="swiper-slide">
+                <img src="./images/etc/logo-blog02.png" alt="" />
+              </div>
+              <div class="swiper-slide">
+                <img src="./images/etc/logo-blog03.png" alt="" />
+              </div>
+              <div class="swiper-slide">
+                <img src="./images/etc/logo-blog04.png" alt="" />
+              </div>
+              <div class="swiper-slide">
+                <img src="./images/etc/logo-blog05.png" alt="" />
+              </div>
+              <div class="swiper-slide">
+                <img src="./images/etc/logo-blog06.png" alt="" />
+              </div>
+              <div class="swiper-slide">
+                <img src="./images/etc/logo-blog07.png" alt="" />
+              </div>
+              <div class="swiper-slide">
+                <img src="./images/etc/logo-blog08.png" alt="" />
+              </div>
+              <div class="swiper-slide">
+                <img src="./images/etc/logo-blog09.png" alt="" />
+              </div> -->
+            </div>
+          </div>
+        </div>
+        <!-- 메뉴 및 검색창 -->
+        <div class="navigation">
+          <a href="#">소식</a>
+          <a href="#">팀 & 크루</a>
+          <a href="#">영입</a>
+          <button id="search">
+            <img src="./images/icon/icon-search.png" alt="" />
+          </button>
+          <!-- 모바일 메뉴  -->
+          <button id="mb-menu-bt">
+            <img src="./images/icon/icon-hbr.png" alt="모바일메뉴" />
+          </button>
+        </div>
+      </div>
+    </header>
+    <!-- 모바일용 메뉴 -->
+    <div class="mb-menu">
+      <div class="layout">
+        <a href="#">소식</a>
+        <a href="#">팀 & 크루</a>
+        <a href="#">영입</a>
+      </div>
+    </div>
+    <!-- 내용영역 -->
+    <main class="main">
+      <div class="layout">
+        <!-- 슬라이드 영역 -->
+        <div class="main-slide">
+          <!-- 왼쪽 슬라이드 -->
+          <div class="left">
+            <!--@Start 비주얼 슬라이드  -->
+            <!-- 교체 가능  -->
+            <div class="swiper visual-slide">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <a href="#">
+                    <img src="./images/b1.png" alt="배너이미지" />
+                  </a>
+                </div>
+                <div class="swiper-slide">
+                  <a href="#">
+                    <img src="./images/b1.png" alt="배너이미지" />
+                  </a>
+                </div>
+                <div class="swiper-slide">
+                  <a href="#">
+                    <img src="./images/b1.png" alt="배너이미지" />
+                  </a>
+                </div>
+                <div class="swiper-slide">
+                  <a href="#">
+                    <img src="./images/b1.png" alt="배너이미지" />
+                  </a>
+                </div>
+              </div>
+              <div class="swiper-pagination"></div>
+            </div>
+          </div>
+
+          <!-- 오른쪽 슬라이드 -->
+          <div class="right">
+            <!-- 교체 가능 -->
+            <div class="card-slide">
+              <a href="#">
+                <img src="./images/c3.png" alt="배너이미지" />
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 내용 영역 -->
+        <div class="main-content">
+          <!-- 왼쪽 영역 -->
+          <div class="left">
+            <!-- 최신 목록 -->
+            <div class="list-new-wrap">
+              <h4 class="list-title">NEW. 따끈따끈 새로 나온 글 🔥</h4>
+              <div class="list-thum-wrap">
+                <!--@Start 게시글 목록 -->
+                <div class="list" id="news-api">
+                  <a href="#" class="thum">
+                    <div class="thum-img">
+                      <img src="./images/c1.jpg" alt="뉴스" />
+                    </div>
+                    <div class="thum-cate">
+                      <img src="./images/icon/ic_llms.png" alt="llms" />
+                      <span>LLMs</span>
+                    </div>
+                    <h5 class="thum-title">
+                      Transformer 기반 AI 가속 프레임워크 ALiBi FlashAttention
+                      공개
+                    </h5>
+                    <span class="thum-date">2024.10.29</span>
+                  </a>
+                  <a href="#" class="thum">
+                    <div class="thum-img">
+                      <img src="./images/c1.jpg" alt="뉴스" />
+                    </div>
+                    <div class="thum-cate">
+                      <img src="./images/icon/ic_llms.png" alt="llms" />
+                      <span>LLMs</span>
+                    </div>
+                    <h5 class="thum-title">
+                      Transformer 기반 AI 가속 프레임워크 ALiBi FlashAttention
+                      공개
+                    </h5>
+                    <span class="thum-date">2024.10.29</span>
+                  </a>
+                  <a href="#" class="thum">
+                    <div class="thum-img">
+                      <img src="./images/c1.jpg" alt="뉴스" />
+                    </div>
+                    <div class="thum-cate">
+                      <img src="./images/icon/ic_llms.png" alt="llms" />
+                      <span>LLMs</span>
+                    </div>
+                    <h5 class="thum-title">
+                      Transformer 기반 AI 가속 프레임워크 ALiBi FlashAttention
+                      공개
+                    </h5>
+                    <span class="thum-date">2024.10.29</span>
+                  </a>
+                </div>
+                <!--@End  -->
+              </div>
+            </div>
+            <!-- 배너 -->
+            <div class="banner">
+              <a href="#">
+                <img src="./images/1pc.png" alt="배너" />
+              </a>
+            </div>
+            <!-- 카테고리 목록 -->
+            <div class="list-cate-wrap">
+              <h4 class="list-title">NEW. 따끈따끈 새로 나온 글 🔥</h4>
+              <div class="list-thum-wrap" id="crew">
+                <!--@Start 게시글 목록 -->
+                <div class="list">
+                  <a href="#" class="thum">
+                    <div class="thum-img">
+                      <img src="./images/c1.jpg" alt="뉴스" />
+                    </div>
+                    <div class="thum-cate">
+                      <img src="./images/icon/ic_llms.png" alt="llms" />
+                      <span>LLMs</span>
+                    </div>
+                    <h5 class="thum-title">
+                      Transformer 기반 AI 가속 프레임워크 ALiBi FlashAttention
+                      공개
+                    </h5>
+                    <span class="thum-date">2024.10.29</span>
+                  </a>
+                  <a href="#" class="thum">
+                    <div class="thum-img">
+                      <img src="./images/c1.jpg" alt="뉴스" />
+                    </div>
+                    <div class="thum-cate">
+                      <img src="./images/icon/ic_llms.png" alt="llms" />
+                      <span>LLMs</span>
+                    </div>
+                    <h5 class="thum-title">
+                      Transformer 기반 AI 가속 프레임워크 ALiBi FlashAttention
+                      공개
+                    </h5>
+                    <span class="thum-date">2024.10.29</span>
+                  </a>
+                  <a href="#" class="thum">
+                    <div class="thum-img">
+                      <img src="./images/c1.jpg" alt="뉴스" />
+                    </div>
+                    <div class="thum-cate">
+                      <img src="./images/icon/ic_llms.png" alt="llms" />
+                      <span>LLMs</span>
+                    </div>
+                    <h5 class="thum-title">
+                      Transformer 기반 AI 가속 프레임워크 ALiBi FlashAttention
+                      공개
+                    </h5>
+                    <span class="thum-date">2024.10.29</span>
+                  </a>
+                </div>
+                <div class="list">
+                  <a href="#" class="thum">
+                    <div class="thum-img">
+                      <img src="./images/c1.jpg" alt="뉴스" />
+                    </div>
+                    <div class="thum-cate">
+                      <img src="./images/icon/ic_llms.png" alt="llms" />
+                      <span>LLMs</span>
+                    </div>
+                    <h5 class="thum-title">
+                      Transformer 기반 AI 가속 프레임워크 ALiBi FlashAttention
+                      공개
+                    </h5>
+                    <span class="thum-date">2024.10.29</span>
+                  </a>
+                  <a href="#" class="thum">
+                    <div class="thum-img">
+                      <img src="./images/c1.jpg" alt="뉴스" />
+                    </div>
+                    <div class="thum-cate">
+                      <img src="./images/icon/ic_llms.png" alt="llms" />
+                      <span>LLMs</span>
+                    </div>
+                    <h5 class="thum-title">
+                      Transformer 기반 AI 가속 프레임워크 ALiBi FlashAttention
+                      공개
+                    </h5>
+                    <span class="thum-date">2024.10.29</span>
+                  </a>
+                  <a href="#" class="thum">
+                    <div class="thum-img">
+                      <img src="./images/c1.jpg" alt="뉴스" />
+                    </div>
+                    <div class="thum-cate">
+                      <img src="./images/icon/ic_llms.png" alt="llms" />
+                      <span>LLMs</span>
+                    </div>
+                    <h5 class="thum-title">
+                      Transformer 기반 AI 가속 프레임워크 ALiBi FlashAttention
+                      공개
+                    </h5>
+                    <span class="thum-date">2024.10.29</span>
+                  </a>
+                </div>
+                <!--@End  -->
+              </div>
+              <!-- 더보기 버튼 -->
+              <div class="list-bt-wrap">
+                <button id="bt-more" class="bt">더보기</button>
+              </div>
+            </div>
+          </div>
+          <!-- 오른쪽 영역 -->
+          <div class="right">
+            <h4 class="list-title">폴더 📁</h4>
+            <!-- 카트 전체 목록 -->
+            <div class="list-card">
+              <!--@Start card -->
+              <!-- api 연동 -->
+              <!-- <a href="#" class="card-wrap">
+                <div class="card-img">
+                  <img src="./images/p1.png" alt="card" />
+                </div>
+
+                <div class="card-info">
+                  <h5 class="card-cate">LLMs</h5>
+                  <span class="card-count">5</span>
+                </div>
+              </a>
+              <a href="#" class="card-wrap">
+                <div class="card-img">
+                  <img src="./images/p1.png" alt="card" />
+                </div>
+
+                <div class="card-info">
+                  <h5 class="card-cate">LLMs</h5>
+                  <span class="card-count">5</span>
+                </div>
+              </a>
+              <a href="#" class="card-wrap">
+                <div class="card-img">
+                  <img src="./images/p1.png" alt="card" />
+                </div>
+
+                <div class="card-info">
+                  <h5 class="card-cate">LLMs</h5>
+                  <span class="card-count">5</span>
+                </div>
+              </a>
+              <a href="#" class="card-wrap">
+                <div class="card-img">
+                  <img src="./images/p1.png" alt="card" />
+                </div>
+
+                <div class="card-info">
+                  <h5 class="card-cate">LLMs</h5>
+                  <span class="card-count">5</span>
+                </div>
+              </a>
+              <a href="#" class="card-wrap">
+                <div class="card-img">
+                  <img src="./images/p1.png" alt="card" />
+                </div>
+
+                <div class="card-info">
+                  <h5 class="card-cate">LLMs</h5>
+                  <span class="card-count">5</span>
+                </div>
+              </a> -->
+              <!--@End card -->
+            </div>
+            <div class="list-card-bt-wrap">
+              <button id="bt-more-card" class="bt">전체보기</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 카드 슬라이드 -->
+      <div class="mb-card-slide">
+        <h4 class="list-title">폴더 📁</h4>
+        <!-- <div class="swiper mb-card-bt-wrap"> -->
+        <div class="swiper mb-card-slide-wrap">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <!--@Start card -->
+              <a href="#" class="card-wrap">
+                <div class="card-img">
+                  <img src="./images/p1.png" alt="card" />
+                </div>
+
+                <div class="card-info">
+                  <h5 class="card-cate">LLMs</h5>
+                  <span class="card-count">5</span>
+                </div>
+              </a>
+              <!--@End card -->
+            </div>
+            <div class="swiper-slide">
+              <!--@Start card -->
+              <a href="#" class="card-wrap">
+                <div class="card-img">
+                  <img src="./images/p1.png" alt="card" />
+                </div>
+
+                <div class="card-info">
+                  <h5 class="card-cate">LLMs</h5>
+                  <span class="card-count">5</span>
+                </div>
+              </a>
+              <!--@End card -->
+            </div>
+            <div class="swiper-slide">
+              <!--@Start card -->
+              <a href="#" class="card-wrap">
+                <div class="card-img">
+                  <img src="./images/p1.png" alt="card" />
+                </div>
+
+                <div class="card-info">
+                  <h5 class="card-cate">LLMs</h5>
+                  <span class="card-count">5</span>
+                </div>
+              </a>
+              <!--@End card -->
+            </div>
+            <div class="swiper-slide">
+              <!--@Start card -->
+              <a href="#" class="card-wrap">
+                <div class="card-img">
+                  <img src="./images/p1.png" alt="card" />
+                </div>
+
+                <div class="card-info">
+                  <h5 class="card-cate">LLMs</h5>
+                  <span class="card-count">5</span>
+                </div>
+              </a>
+              <!--@End card -->
+            </div>
+            <div class="swiper-slide">
+              <!--@Start card -->
+              <a href="#" class="card-wrap">
+                <div class="card-img">
+                  <img src="./images/p1.png" alt="card" />
+                </div>
+
+                <div class="card-info">
+                  <h5 class="card-cate">LLMs</h5>
+                  <span class="card-count">5</span>
+                </div>
+              </a>
+              <!--@End card -->
+            </div>
+          </div>
+        </div>
+        <div class="list-card-bt-wrap">
+          <button id="bt-mb-more-card" class="bt">전체보기</button>
+        </div>
+      </div>
+    </main>
+    <!-- 하단 영역 -->
+    <footer class="footer">
+      <!-- 푸터상단 -->
+      <div class="footer-main">
+        <div class="layout">
+          <div class="left">
+            <div class="footer-logo">
+              <a href="#">
+                <img
+                  src="./images/etc/logo-kakao-footer.png"
+                  alt="카카오 블로그"
+                />
+              </a>
+            </div>
+            <div class="footer-txt">
+              카카오브레인의 혁신은 모든 크루의 물음에서 시작합니다. <br />
+              AI 없이는 상상할 수 없는 세상을 만들기 위해선 생각하지 못한 많은
+              물음이 필요합니다. <br />
+              세상을 변화시킬 수 있는 새로운 물음을 던질 크루를 기다립니다.<br />
+            </div>
+            <div class="footer-link">
+              <a href="https://careers.kakaobrain.com/" target="_blank"
+                >지원하러 가기</a
+              >
+            </div>
+          </div>
+          <div class="right">
+            <ul class="site-map-list">
+              <li><b>정보</b></li>
+              <li>
+                <a href="#">영업페이지 <i class="xi-arrow-up rot-icon"></i></a>
+              </li>
+              <li><a href="#">이메일무단수집거부</a></li>
+              <li><a href="#">개인정보처리방침</a></li>
+              <li><a href="#">오시는 길</a></li>
+            </ul>
+            <ul class="site-map-list">
+              <li><b>문의</b></li>
+              <li><a href="#">영입</a></li>
+              <li><a href="#">PR</a></li>
+              <li><a href="#">마케팅∙사업제휴</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- 푸터하단 -->
+      <div class="footer-copy">
+        <div class="layout">
+          <div class="left">
+            <span class="copy">Kakao Brain Corp. @ All rights reserved.</span>
+          </div>
+          <div class="right">
+            <ul class="sns">
+              <li>
+                <a href="#" class="insta"><i class="xi-linkedin"></i></a>
+              </li>
+              <li>
+                <a href="#" class="youtube"><i class="xi-youtube-play"></i></a>
+              </li>
+              <li>
+                <a href="#" class="github"><i class="xi-github"></i></a>
+              </li>
+              <li>
+                <a href="#" class="facebook"><i class="xi-facebook"></i></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

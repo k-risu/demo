@@ -1,0 +1,14 @@
+/* 메인영역 */
+.main {
+  margin: 0px auto;
+
+  max-width: 1180px;
+  padding-left: 5px;
+  padding-right: 5px;
+
+  min-height: 600px;
+  margin-bottom: 60px;
+  margin-top: 100px;
+}
+.layout {
+}
