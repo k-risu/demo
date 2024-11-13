@@ -20,6 +20,7 @@ window.addEventListener("load", function () {
         const data = `<div class="swiper-slide"><img src="/images/etc/${result[i].imgUrl}" alt="${result[i].desc}"/></div>`;
         logoHtml += data;
       }
+
       // console.log(logoHtml);
 
       // 3. 생성된 html 을 원하는 곳에 배치
