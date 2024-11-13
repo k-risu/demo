@@ -5,6 +5,7 @@ window.addEventListener("load", function () {
   // ---- request : 리퀘스트
   // API 를 통해 불러들여진 결과물
   // ---- response : 리스판스
+
   fetch(LOGO_DATA_URL)
     .then(function (response) {
       const result = response.json();
