@@ -51,6 +51,7 @@ window.addEventListener("load", function () {
       });
       logoSlide.addEventListener("mouseleave", function () {
         headerLogo.slideToLoop(0);
+
         headerLogo.autoplay.stop();
       });
     })
