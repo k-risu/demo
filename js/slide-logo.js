@@ -38,6 +38,7 @@ window.addEventListener("load", function () {
           disableOnInteraction: false,
         },
         effect: "fade",
+
         fadeEffect: {
           crossFade: true,
         },
