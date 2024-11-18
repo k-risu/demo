@@ -18,6 +18,7 @@ window.addEventListener("load", function () {
       let logoHtml = "";
       for (let i = 0; i < 9; i++) {
         const data = `<div class="swiper-slide"><img src="/images/etc/${result[i].imgUrl}" alt="${result[i].desc}"/></div>`;
+
         logoHtml += data;
       }
 
