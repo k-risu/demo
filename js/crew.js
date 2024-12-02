@@ -7,6 +7,7 @@ window.addEventListener("load", function () {
     .then(function (response) {
       //   console.log("뉴스", response);
       const result = response.json();
+
       return result;
     })
     .then(function (result) {
