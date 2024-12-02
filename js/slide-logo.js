@@ -9,6 +9,7 @@ window.addEventListener("load", function () {
   fetch(LOGO_DATA_URL)
     .then(function (response) {
       const result = response.json();
+
       return result;
     })
     .then(function (result) {
