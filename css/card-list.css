@@ -8,6 +8,7 @@
   height: 330px;
   border-radius: 20px;
   overflow: hidden;
+
   transition: all 0.5s;
   margin-bottom: 30px;
 }
