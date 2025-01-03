@@ -15,7 +15,6 @@
 }
 .card-wrap:hover {
   transform: translateY(-10px);
-
   filter: drop-shadow(0px 20px 40px #bdc4d3);
 }
 .card-img {
