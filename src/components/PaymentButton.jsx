@@ -6,7 +6,7 @@ import { useCallback } from "react";
 export default function PaymentButton() {
   const handlePayment = useCallback(async () => {
     // 현재 호스트 URL 가져오기
-    const host = window.location.origin;
+    const host = process.env.NEXT_PUBLIC_VERCEL_URL;
 
     const payload = {
       mallId: "T0021306",
