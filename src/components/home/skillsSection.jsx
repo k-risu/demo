@@ -32,11 +32,7 @@ export default function SkillsSection() {
       observer.observe(imageRef.current);
     }
 
-    return () => {
-      if (imageRef.current) {
-        observer.unobserve(imageRef.current);
-      }
-    };
+    return () => {};
   }, []);
 
   return (
