@@ -32,10 +32,20 @@ export default function PaymentButton() {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            Accept: "application/json",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "POST, OPTIONS",
+            "Access-Control-Allow-Headers": "Content-Type",
           },
+          mode: "cors",
+          credentials: "include",
           body: JSON.stringify(payload),
         },
       );
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
 
       const result = await response.json();
       console.log("거래 등록 응답:", result);
@@ -48,11 +58,15 @@ export default function PaymentButton() {
           "width=800,height=600",
         );
 
+        if (!paymentWindow) {
+          throw new Error("팝업이 차단되었습니다. 팝업 차단을 해제해주세요.");
+        }
+
         // 결제 창이 닫힐 때 이벤트 처리
         const checkWindow = setInterval(() => {
           if (paymentWindow.closed) {
             clearInterval(checkWindow);
-            window.location.href = "/return.jsp";
+            window.location.href = "/return";
           }
         }, 1000);
 
@@ -62,7 +76,7 @@ export default function PaymentButton() {
             if (paymentWindow) {
               paymentWindow.close();
             }
-            window.location.href = "/return.jsp";
+            window.location.href = "/return";
           }
         });
       } else {
@@ -70,9 +84,16 @@ export default function PaymentButton() {
       }
     } catch (err) {
       console.error("결제 요청 중 오류:", err);
-      alert("결제 요청 중 오류가 발생했습니다.");
+      alert(`결제 요청 중 오류가 발생했습니다: ${err.message}`);
     }
   }, []);
 
-  return <button onClick={handlePayment}>결제하기</button>;
+  return (
+    <button
+      onClick={handlePayment}
+      className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+    >
+      결제하기
+    </button>
+  );
 }
