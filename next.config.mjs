@@ -14,7 +14,7 @@ const nextConfig = {
       },
       {
         // return 페이지에 대해 적용
-        source: "/return",
+        source: "/return/:path*",
         headers: [
           { key: "Access-Control-Allow-Credentials", value: "true" },
           { key: "Access-Control-Allow-Origin", value: "*" },
