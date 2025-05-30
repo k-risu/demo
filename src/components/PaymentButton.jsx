@@ -5,13 +5,16 @@ import { useCallback } from "react";
 
 export default function PaymentButton() {
   const handlePayment = useCallback(async () => {
+    // 현재 호스트 URL 가져오기
+    const host = window.location.origin;
+
     const payload = {
       mallId: "T0021306",
       payMethodTypeCode: "11", // 신용카드
       currency: "00", // 원화
       amount: 1000,
       clientTypeCode: "00", // 통합형
-      returnUrl: "https://demo-two-blue.vercel.app/return",
+      returnUrl: `${host}/return`,
       deviceTypeCode: "pc",
       shopOrderNo: 202505301032,
       orderInfo: {
@@ -66,7 +69,7 @@ export default function PaymentButton() {
         const checkWindow = setInterval(() => {
           if (paymentWindow.closed) {
             clearInterval(checkWindow);
-            window.location.href = "/return";
+            window.location.href = `${host}/return`;
           }
         }, 1000);
 
@@ -76,7 +79,7 @@ export default function PaymentButton() {
             if (paymentWindow) {
               paymentWindow.close();
             }
-            window.location.href = "/return";
+            window.location.href = `${host}/return`;
           }
         });
       } else {
@@ -91,7 +94,7 @@ export default function PaymentButton() {
   return (
     <button
       onClick={handlePayment}
-      className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+      className="px-4 py-2 bg-blue-500 rounded hover:bg-blue-600 transition-colors"
     >
       결제하기
     </button>

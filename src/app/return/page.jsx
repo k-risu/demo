@@ -1,71 +1,57 @@
-import ReturnResult from "./ReturnResult";
+"use client";
 
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 
-export default async function ReturnPage({ searchParams }) {
-  const params = await Promise.resolve(searchParams);
-  const authorizationId = params?.authorizationId;
-  const payMethodTypeCode = params?.payMethodTypeCode;
+export default function ReturnPage() {
+  const searchParams = useSearchParams();
+  const [isProcessing, setIsProcessing] = useState(true);
 
-  if (!authorizationId || !payMethodTypeCode) {
-    return (
-      <div style={{ padding: 20 }}>
-        <h2>결제 오류</h2>
-        <p style={{ color: "red" }}>필수 인증 정보가 누락되었습니다.</p>
-      </div>
-    );
-  }
+  useEffect(() => {
+    try {
+      // 결제 결과 처리
+      const result = searchParams.get("result");
+      const message = searchParams.get("message");
 
-  try {
-    const response = await fetch(
-      "https://testpgapi.easypay.co.kr/api/ep9/trades/result",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json; charset=UTF-8",
-          Authorization:
-            "Basic " +
-            Buffer.from("T0021306:easypay!KICCTEST").toString("base64"),
-        },
-        body: JSON.stringify({
-          mallId: "T0021306",
-          authorizationId,
-          payMethodTypeCode,
-        }),
-        cache: "no-store",
-      },
-    );
+      if (result === "success") {
+        alert("결제가 성공적으로 완료되었습니다.");
+      } else {
+        alert(
+          `결제 처리 중 오류가 발생했습니다: ${message || "알 수 없는 오류"}`,
+        );
+      }
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+      // 부모 창에 결제 완료 메시지 전송
+      if (window.opener) {
+        window.opener.postMessage("payment_complete", "*");
+      }
+    } catch (error) {
+      console.error("결제 처리 중 오류:", error);
+    } finally {
+      setIsProcessing(false);
     }
+  }, [searchParams]);
 
-    const data = await response.json();
-
-    if (data.resCd !== "0000") {
-      return (
-        <div style={{ padding: 20 }}>
-          <h2>결제 오류</h2>
-          <p style={{ color: "red" }}>{data.resMsg}</p>
+  // URL이 유효하지 않을 때의 처리
+  if (!searchParams) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold mb-4">잘못된 접근</h1>
+          <p>올바른 결제 경로로 접근해주세요.</p>
         </div>
-      );
-    }
-
-    return (
-      <ReturnResult
-        authorizationId={authorizationId}
-        payMethodTypeCode={payMethodTypeCode}
-        paymentResult={data}
-      />
-    );
-  } catch (error) {
-    console.error("Payment result error:", error);
-    return (
-      <div style={{ padding: 20 }}>
-        <h2>결제 오류</h2>
-        <p style={{ color: "red" }}>결제 결과 조회 중 오류가 발생했습니다.</p>
       </div>
     );
   }
+
+  return (
+    <div className="min-h-screen flex items-center justify-center">
+      <div className="text-center">
+        <h1 className="text-2xl font-bold mb-4">
+          {isProcessing ? "결제 처리 중..." : "결제 처리 완료"}
+        </h1>
+        <p>{isProcessing ? "잠시만 기다려주세요." : "창을 닫아주세요."}</p>
+      </div>
+    </div>
+  );
 }
