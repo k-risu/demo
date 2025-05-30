@@ -1,8 +1,6 @@
-import Footer from "@/components/footer";
+import { Main } from "@/styles/layout.styles";
 import "./globals.css";
 import localFont from "next/font/local";
-import Header from "@/components/header";
-import { GradientBar, LayoutWrapper, Main } from "@/styles/layout.styles";
 
 const pretendard = localFont({
   src: "../../public/fonts/PretendardVariable.woff2",

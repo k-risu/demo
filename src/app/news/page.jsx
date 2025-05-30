@@ -6,13 +6,6 @@ import {
 } from "@/styles/new/new.styles";
 
 export default function News() {
-  const news = [
-    {
-      id: 1,
-      title: "",
-      content: "뉴스 & 소식",
-    },
-  ];
   return (
     <NewsLayout>
       <h1>뉴스 & 소식</h1>
