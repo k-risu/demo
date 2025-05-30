@@ -5,8 +5,10 @@ import { useCallback } from "react";
 
 export default function PaymentButton() {
   const handlePayment = useCallback(async () => {
-    // 현재 호스트 URL 가져오기
-    const host = process.env.NEXT_PUBLIC_VERCEL_URL;
+    // 환경변수에서 도메인 가져오기
+    const domain = process.env.NEXT_PUBLIC_DOMAIN_URL;
+    const protocol = process.env.NEXT_PUBLIC_PROTOCOL || "https";
+    const returnUrl = `${protocol}://${domain}/return`;
 
     const payload = {
       mallId: "T0021306",
@@ -14,7 +16,7 @@ export default function PaymentButton() {
       currency: "00", // 원화
       amount: 1000,
       clientTypeCode: "00", // 통합형
-      returnUrl: `${host}/return`,
+      returnUrl, // 환경변수로 설정된 URL 사용
       deviceTypeCode: "pc",
       shopOrderNo: 202505301032,
       orderInfo: {
@@ -70,7 +72,7 @@ export default function PaymentButton() {
           if (paymentWindow.closed) {
             clearInterval(checkWindow);
             // 리다이렉트 대신 새로운 창에서 열기
-            window.open(`${host}/return`, "_self");
+            window.open(`${returnUrl}`, "_self");
           }
         }, 1000);
 
@@ -81,7 +83,7 @@ export default function PaymentButton() {
               paymentWindow.close();
             }
             // 리다이렉트 대신 새로운 창에서 열기
-            window.open(`${host}/return`, "_self");
+            window.open(`${returnUrl}`, "_self");
           }
         });
       } else {
