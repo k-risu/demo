@@ -69,7 +69,8 @@ export default function PaymentButton() {
         const checkWindow = setInterval(() => {
           if (paymentWindow.closed) {
             clearInterval(checkWindow);
-            window.location.href = `${host}/return`;
+            // 리다이렉트 대신 새로운 창에서 열기
+            window.open(`${host}/return`, "_self");
           }
         }, 1000);
 
@@ -79,7 +80,8 @@ export default function PaymentButton() {
             if (paymentWindow) {
               paymentWindow.close();
             }
-            window.location.href = `${host}/return`;
+            // 리다이렉트 대신 새로운 창에서 열기
+            window.open(`${host}/return`, "_self");
           }
         });
       } else {
