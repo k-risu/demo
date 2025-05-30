@@ -11,7 +11,7 @@ export default function PaymentButton() {
       currency: "00", // 원화
       amount: 1000,
       clientTypeCode: "00", // 통합형
-      returnUrl: "http://localhost:3000/return",
+      returnUrl: "https://demo-two-blue.vercel.app/return",
       deviceTypeCode: "pc",
       shopOrderNo: 202505301032,
       orderInfo: {
