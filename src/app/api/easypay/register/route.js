@@ -16,8 +16,7 @@ export async function POST() {
       currency: "00", // 원화
       amount: 1000, // 결제 금액
       clientTypeCode: "00", // 통합형
-      returnUrl: "https://demo-two-blue.vercel.app/return", // URL 객체 사용하지 않고 직접 문자열 지정
-      // returnUrl: "http://localhost:3000/return", // URL 객체 사용하지 않고 직접 문자열 지정
+      returnUrl: "https://demo-two-blue.vercel.app/api/return", // returnUrl을 API 라우트로 변경
 
       deviceTypeCode: "pc",
       shopOrderNo: orderNo,
