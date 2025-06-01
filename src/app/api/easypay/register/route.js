@@ -1,6 +1,9 @@
 import https from "https";
 import { NextResponse } from "next/server";
 
+export const dynamic = "force-dynamic"; // 동적 라우트 설정
+export const revalidate = 0; // 캐시 비활성화
+
 export async function POST() {
   try {
     // 현재 시간을 이용한 주문번호 생성 (YYYYMMDDHHMMSS + 랜덤숫자)
@@ -13,7 +16,7 @@ export async function POST() {
       currency: "00", // 원화
       amount: 1000, // 결제 금액
       clientTypeCode: "00", // 통합형
-      returnUrl: "https://demo-two-blue.vercel.app/", // URL 객체 사용하지 않고 직접 문자열 지정
+      returnUrl: "https://demo-two-blue.vercel.app/return", // URL 객체 사용하지 않고 직접 문자열 지정
       deviceTypeCode: "pc",
       shopOrderNo: orderNo,
       langFlag: "KOR", // 언어 설정 추가
@@ -50,6 +53,7 @@ export async function POST() {
         },
         body: JSON.stringify(requestData),
         agent: agent,
+        cache: "no-store", // fetch 요청에 대한 캐시 비활성화
       },
     );
 
@@ -81,11 +85,18 @@ export async function POST() {
       throw new Error("유효하지 않은 결제창 URL입니다");
     }
 
-    return NextResponse.json({
-      resCd: data.resCd || "0000",
-      resMsg: data.resMsg || "성공",
-      authPageUrl: data.authPageUrl,
-    });
+    return NextResponse.json(
+      {
+        resCd: data.resCd || "0000",
+        resMsg: data.resMsg || "성공",
+        authPageUrl: data.authPageUrl,
+      },
+      {
+        headers: {
+          "Cache-Control": "no-store, no-cache, must-revalidate", // 응답 캐시 비활성화
+        },
+      },
+    );
   } catch (error) {
     console.error("Error:", error);
     return NextResponse.json(
@@ -94,7 +105,12 @@ export async function POST() {
         resMsg: `서버 오류가 발생했습니다: ${error.message}`,
         authPageUrl: null,
       },
-      { status: 500 },
+      {
+        status: 500,
+        headers: {
+          "Cache-Control": "no-store, no-cache, must-revalidate",
+        },
+      },
     );
   }
 }

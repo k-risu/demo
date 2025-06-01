@@ -2,18 +2,21 @@
 "use client";
 
 import { useCallback } from "react";
+import axios from "axios";
+
+// API 클라이언트 설정
+const apiClient = axios.create({
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
 
 export default function PaymentButton() {
   const handlePayment = useCallback(async () => {
     try {
-      const registerResponse = await fetch("/api/easypay/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      const registerData = await registerResponse.json();
+      const { data: registerData } = await apiClient.post(
+        "/api/easypay/register",
+      );
       console.log("Response:", registerData);
 
       if (registerData.resCd === "0000" && registerData.authPageUrl) {
