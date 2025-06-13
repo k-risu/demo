@@ -1,26 +1,26 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  async headers() {
-    return [
+  images: {
+    remotePatterns: [
       {
-        source: "/api/:path*",
-        headers: [
-          {
-            key: "Content-Security-Policy",
-            value:
-              "default-src 'self'; connect-src 'self' https://testpgapi.easypay.co.kr https://testsp.easypay.co.kr https://testpg.easypay.co.kr https://testapi.easypay.co.kr; frame-src 'self' https://testpg.easypay.co.kr https://testsp.easypay.co.kr",
-          },
-          {
-            key: "Strict-Transport-Security",
-            value: "max-age=31536000; includeSubDomains",
-          },
-          {
-            key: "X-Content-Type-Options",
-            value: "nosniff",
-          },
-        ],
+        protocol: "http",
+        hostname: "localhost",
+        port: "3100",
+        pathname: "/**",
       },
-    ];
+      // Railway 배포 도메인 추가
+      {
+        protocol: "https",
+        hostname: "*.up.railway.app", // Railway 도메인 패턴
+        pathname: "/**",
+      },
+      // 커스텀 도메인이 있는 경우 추가
+      {
+        protocol: "https",
+        hostname: "api.cocoh.kr",
+        pathname: "/**",
+      },
+    ],
   },
 };
 
