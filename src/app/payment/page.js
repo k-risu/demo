@@ -13,10 +13,10 @@ import { Loader2 } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { paymentService } from "@/services/paymentService";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { QRCodeCanvas } from "qrcode.react";
 
-export default function Payment() {
+function PaymentContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { isAuthenticated, isLoading } = useAuthCheck();
@@ -166,5 +166,22 @@ export default function Payment() {
         </div>
       )}
     </div>
+  );
+}
+
+export default function Payment() {
+  return (
+    <Suspense
+      fallback={
+        <div className="flex h-screen w-full items-center justify-center">
+          <div className="flex flex-col items-center space-y-4">
+            <Loader2 className="h-10 w-10 animate-spin text-primary" />
+            <p className="text-lg text-muted-foreground">로딩중...</p>
+          </div>
+        </div>
+      }
+    >
+      <PaymentContent />
+    </Suspense>
   );
 }
