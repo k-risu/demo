@@ -14,75 +14,29 @@ import {
 function SuccessContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const [order, setOrder] = useState(null);
-  const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [redirecting, setRedirecting] = useState(false);
 
   useEffect(() => {
-    const processPayment = async () => {
-      try {
-        const shopOrderNo = searchParams.get("shopOrderNo");
-        const authorizationId = searchParams.get("authorizationId");
+    try {
+      const shopOrderNo = searchParams.get("shopOrderNo");
+      const goodName = searchParams.get("goodName");
+      const amount = searchParams.get("amount");
 
-        if (!shopOrderNo || !authorizationId) {
-          setError("주문번호 또는 인증번호가 없습니다.");
-          setLoading(false);
-          return;
-        }
-
-        // 결제 승인 요청
-        const approvalResponse = await fetch("/api/payment/approve", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            mallId: "T0021312",
-            shopTransactionId: shopOrderNo,
-            authorizationId: authorizationId,
-            shopOrderNo: shopOrderNo,
-            approvalReqDate: new Date()
-              .toISOString()
-              .slice(0, 10)
-              .replace(/-/g, ""),
-          }),
-        });
-
-        const approvalResult = await approvalResponse.json();
-        console.log("결제 승인 결과:", approvalResult);
-
-        if (approvalResult.resCd === "0000") {
-          // 승인 성공 시 주문 정보 조회
-          const orderResponse = await fetch(
-            `/api/return?shopOrderNo=${shopOrderNo}`
-          );
-          const orderData = await orderResponse.json();
-
-          if (!orderResponse.ok) {
-            throw new Error(
-              orderData.error || "주문 정보를 가져오는데 실패했습니다."
-            );
-          }
-
-          setOrder(orderData.order);
-
-          // 3초 후 메인 페이지로 리다이렉트
-          setTimeout(() => {
-            setRedirecting(true);
-            router.push("/");
-          }, 3000);
-        } else {
-          throw new Error(approvalResult.resMsg || "결제 승인에 실패했습니다.");
-        }
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
+      if (!shopOrderNo || !goodName || !amount) {
+        throw new Error("필수 파라미터가 누락되었습니다.");
       }
-    };
 
-    processPayment();
+      // 3초 후 메인 페이지로 리다이렉트
+      setTimeout(() => {
+        setRedirecting(true);
+        router.push("/");
+      }, 3000);
+    } catch (err) {
+      console.error("처리 중 오류 발생:", err);
+    } finally {
+      setLoading(false);
+    }
   }, [searchParams, router]);
 
   if (loading) {
@@ -98,32 +52,6 @@ function SuccessContent() {
     );
   }
 
-  if (error) {
-    return (
-      <div className="flex h-screen w-full items-center justify-center">
-        <Card className="w-[400px] dark:bg-gray-800">
-          <CardHeader>
-            <CardTitle className="text-2xl text-red-500">결제 오류</CardTitle>
-            <CardDescription>{error}</CardDescription>
-          </CardHeader>
-        </Card>
-      </div>
-    );
-  }
-
-  if (!order) {
-    return (
-      <div className="flex h-screen w-full items-center justify-center">
-        <Card className="w-[400px] dark:bg-gray-800">
-          <CardHeader>
-            <CardTitle className="text-2xl text-yellow-500">알림</CardTitle>
-            <CardDescription>주문 정보를 찾을 수 없습니다.</CardDescription>
-          </CardHeader>
-        </Card>
-      </div>
-    );
-  }
-
   return (
     <div className="flex h-screen w-full items-center justify-center">
       <Card className="w-[400px] dark:bg-gray-800">
@@ -134,16 +62,18 @@ function SuccessContent() {
         <CardContent className="space-y-4">
           <div className="space-y-2">
             <p className="text-sm text-muted-foreground">주문번호</p>
-            <p className="font-medium">{order.orderNumber}</p>
+            <p className="font-medium">{searchParams.get("shopOrderNo")}</p>
           </div>
           <div className="space-y-2">
             <p className="text-sm text-muted-foreground">상품명</p>
-            <p className="font-medium">{order.productName}</p>
+            <p className="font-medium">
+              {decodeURIComponent(searchParams.get("goodName"))}
+            </p>
           </div>
           <div className="space-y-2">
             <p className="text-sm text-muted-foreground">결제금액</p>
             <p className="font-medium">
-              {order.totalAmount.toLocaleString()}원
+              {Number(searchParams.get("amount")).toLocaleString()}원
             </p>
           </div>
           {redirecting && (
